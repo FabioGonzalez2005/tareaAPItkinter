@@ -9,8 +9,8 @@ def main():
     product_list = fromdict(APIResponse, data_dict)
     print(interfaz.mostrarProductos(product_list))
 
-
-main()
+if __name__ == "__main__":
+    main()
 
 
 
