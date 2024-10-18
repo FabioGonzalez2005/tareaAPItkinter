@@ -3,8 +3,17 @@ from tkinter import ttk
 
 indice_actual = 0
 
-def actualizar_producto(titulo_label, lista_productos):
-    titulo_label.config(text=lista_productos.products[indice_actual].title)
+def actualizar_producto(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, lista_productos):
+    producto = lista_productos.products[indice_actual]
+    titulo_label.config(text=producto.title)
+    descripcion_label.config(text=producto.description)
+    categoria_label.config(text=producto.category)
+    precio_label.config(text=producto.price)
+    rating_label.config(text=producto.rating)
+    stock_label.config(text=producto.stock)
+    tags_label.config(text=f"Tags: {', '.join(producto.tags)}")
+    marca_label.config(text=producto.brand)
+    sku_label.config(text=producto.sku)
 
 def siguiente(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, lista_productos):
     global indice_actual
@@ -60,10 +69,10 @@ def mostrarProductos(lista_productos):
     boton_anterior = ttk.Button(frame, text="Anterior", command=lambda: anterior(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku))
     boton_anterior.pack(side=tk.LEFT, padx=10, pady=20)
 
-    boton_siguiente = ttk.Button(frame, text="Siguiente", command=lambda: siguiente(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku))
+    boton_siguiente = ttk.Button(frame, text="Siguiente", command=lambda: siguiente(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, lista_productos))
     boton_siguiente.pack(side=tk.RIGHT, padx=10, pady=20)
 
-    actualizar_producto(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku)
+    actualizar_producto(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, lista_productos)
 
     ventanaProductos.mainloop()
 
