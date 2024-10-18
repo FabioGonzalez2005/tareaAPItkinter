@@ -21,22 +21,48 @@ def anterior(titulo_label, lista_productos):
 def mostrarProductos(lista_productos):
     ventanaProductos = tk.Tk()
     ventanaProductos.title("Productos de Fabio")
-    ventanaProductos.geometry("400x400")
+    ventanaProductos.geometry("500x600")
 
-    canvas = tk.Canvas(ventanaProductos, width=400, height=400, background='#E4CCFF')
+    canvas = tk.Canvas(ventanaProductos, width=500, height=600, background='#E4CCFF')
     canvas.pack()
 
     frame = tk.Frame(canvas)
-    canvas.create_window(200, 100, window=frame)
+    canvas.create_window(250, 200, window=frame)
 
-    titulo = ttk.Label(frame, text=lista_productos.products[indice_actual].title, font=("Arial", 18), background='#E4CCFF')
+    titulo = ttk.Label(frame, text="", font=("Arial", 16), background='#E4CCFF')
     titulo.pack()
 
-    boton_anterior = ttk.Button(frame, text="Anterior", command=lambda: anterior(titulo, lista_productos))
-    boton_anterior.pack()
+    descripcion = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    descripcion.pack()
 
-    boton_siguiente = ttk.Button(frame, text="Siguiente", command=lambda: siguiente(titulo, lista_productos))
-    boton_siguiente.pack()
+    categoria = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    categoria.pack()
+
+    precio = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    precio.pack()
+
+    rating = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    rating.pack()
+
+    stock = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    stock.pack()
+
+    tags = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    tags.pack()
+
+    marca = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    marca.pack()
+
+    sku = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF')
+    sku.pack()
+
+    boton_anterior = ttk.Button(frame, text="Anterior", command=lambda: anterior(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku))
+    boton_anterior.pack(side=tk.LEFT, padx=10, pady=20)
+
+    boton_siguiente = ttk.Button(frame, text="Siguiente", command=lambda: siguiente(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku))
+    boton_siguiente.pack(side=tk.RIGHT, padx=10, pady=20)
+
+    actualizar_producto(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku)
 
     ventanaProductos.mainloop()
 
