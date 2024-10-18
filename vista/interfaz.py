@@ -6,17 +6,18 @@ indice_actual = 0
 def actualizar_producto(titulo_label, lista_productos):
     titulo_label.config(text=lista_productos.products[indice_actual].title)
 
-def siguiente(titulo_label, lista_productos):
+def siguiente(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, lista_productos):
     global indice_actual
     if indice_actual < len(lista_productos.products) - 1:
         indice_actual += 1
-        actualizar_producto(titulo_label, lista_productos)
+        actualizar_producto(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label)
 
-def anterior(titulo_label, lista_productos):
+def anterior(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label):
     global indice_actual
     if indice_actual > 0:
         indice_actual -= 1
-        actualizar_producto(titulo_label, lista_productos)
+        actualizar_producto(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label)
+
 
 def mostrarProductos(lista_productos):
     ventanaProductos = tk.Tk()
