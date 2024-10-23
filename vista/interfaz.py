@@ -47,43 +47,43 @@ def mostrarProductos(lista_productos):
     frame.pack(pady=10, padx=10)
 
     img_label = ttk.Label(frame, background='#E4CCFF')
-    img_label.pack(pady=10)
+    img_label.grid(row=0, column=2, columnspan=2, pady=10)
 
     titulo = ttk.Label(frame, text="", font=("Arial", 16, "bold"), background='#E4CCFF', justify="center")
-    titulo.pack(pady=5)
+    titulo.grid(row=1, column=2, columnspan=2, pady=5)
 
     marca = ttk.Label(frame, text="", font=("Arial", 14, "bold"), background='#E4CCFF', justify="center")
-    marca.pack(pady=5)
+    marca.grid(row=2, column=2, columnspan=2, pady=5)
 
     descripcion = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF', wraplength=400, justify="center")
-    descripcion.pack(pady=5)
+    descripcion.grid(row=3, column=2, columnspan=2, pady=5)
 
     categoria = ttk.Label(frame, text="", font=("Arial", 12, "bold"), background='#E4CCFF', justify="center")
-    categoria.pack(pady=5)
+    categoria.grid(row=4, column=2, columnspan=2, pady=5)
 
     tags = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF', foreground='#666666', justify="center")
-    tags.pack(pady=5)
-
-    precio = ttk.Label(frame, text="", font=("Arial", 20, "bold"), background='#E4CCFF', justify="center")
-    precio.pack(pady=5)
+    tags.grid(row=5, column=2, columnspan=2, pady=5)
 
     sku = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF', justify="center")
-    sku.pack(pady=5)
+    sku.grid(row=9, column=2, columnspan=2, pady=5)
+
+    precio = ttk.Label(frame, text="", font=("Arial", 20, "bold"), background='#E4CCFF', justify="center")
+    precio.grid(row=9, column=4, columnspan=2, pady=5)
 
     rating = ttk.Label(frame, text="", font=("Arial", 16, "bold"), background='#E4CCFF', justify="center")
-    rating.pack(pady=5)
+    rating.grid(row=9, column=0, pady=5)
 
     stock = ttk.Label(frame, text="", font=("Arial", 12), background='#E4CCFF', justify="center")
-    stock.pack(pady=5)
+    stock.grid(row=8, column=4, columnspan=2, pady=5)
 
     frame_botones = tk.Frame(frame, background='#E4CCFF')
-    frame_botones.pack(pady=20)
+    frame_botones.grid(row=12, column=2, columnspan=3, pady=20)
 
     boton_anterior = ttk.Button(frame_botones, text="Anterior", command=lambda: anterior(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, img_label, lista_productos))
-    boton_anterior.pack(side=tk.LEFT, padx=10)
+    boton_anterior.grid(row=0, column=1)
 
     boton_siguiente = ttk.Button(frame_botones, text="Siguiente", command=lambda: siguiente(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, img_label, lista_productos))
-    boton_siguiente.pack(side=tk.RIGHT, padx=10)
+    boton_siguiente.grid(row=0, column=3, padx=35)
 
     actualizar_producto(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, img_label, lista_productos)
 
