@@ -51,9 +51,9 @@ def buscar_producto(entry, lista_productos, titulo_label, descripcion_label, cat
     frame_resultados = tk.Frame(ventana_busqueda)
     frame_resultados.pack(pady=10)
 
-    for producto in lista_productos.products:
+    for producto in sorted(lista_productos.products, key=lambda p: p.title.lower()):
         if texto_busqueda in producto.title.lower():
-            boton_seleccionar = ttk.Button(frame_resultados, text=producto.title, command=lambda p=producto: mostrar_producto(p, titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos))
+            boton_seleccionar = ttk.Button(frame_resultados, text=producto.title, command=lambda p = producto: mostrar_producto(p, titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos))
             boton_seleccionar.pack(anchor="w")
 
 def mostrarProductos(lista_productos):
