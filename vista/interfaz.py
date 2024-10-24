@@ -24,13 +24,11 @@ def actualizar_producto(titulo_label, descripcion_label, categoria_label, precio
     img_label.config(image=img_tk)
     img_label.image = img_tk
 
-
 def siguiente(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos):
     global indice_actual
     if indice_actual < len(lista_productos.products) - 1:
         indice_actual += 1
         actualizar_producto(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos)
-
 
 def anterior(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos):
     global indice_actual
@@ -38,8 +36,12 @@ def anterior(titulo_label, descripcion_label, categoria_label, precio_label, rat
         indice_actual -= 1
         actualizar_producto(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos)
 
+def mostrar_producto(producto, titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos):
+    global indice_actual
+    indice_actual = lista_productos.products.index(producto)
+    actualizar_producto(titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos)
 
-def buscar_producto(entry, lista_productos):
+def buscar_producto(entry, lista_productos, titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label):
     texto_busqueda = entry.get().lower()
 
     ventana_busqueda = tk.Toplevel()
@@ -53,7 +55,8 @@ def buscar_producto(entry, lista_productos):
         if texto_busqueda in producto.title.lower():
             label_producto = ttk.Label(frame_resultados, text=producto.title)
             label_producto.pack(anchor="w")
-
+            boton_seleccionar = ttk.Button(frame_resultados, text="Seleccionar", command=lambda p=producto: mostrar_producto(p, titulo_label, descripcion_label, categoria_label, precio_label, rating_label, stock_label, tags_label, marca_label, sku_label, img_label, lista_productos))
+            boton_seleccionar.pack(anchor="w")
 
 def mostrarProductos(lista_productos):
     ventanaProductos = tk.Tk()
@@ -66,7 +69,7 @@ def mostrarProductos(lista_productos):
 
     entry_busqueda = ttk.Entry(frame, width=40)
     entry_busqueda.grid(row=0, column=2, columnspan=2, pady=5)
-    boton_buscar = ttk.Button(frame, text="Buscar", command=lambda: buscar_producto(entry_busqueda, lista_productos))
+    boton_buscar = ttk.Button(frame, text="Buscar", command=lambda: buscar_producto(entry_busqueda, lista_productos, titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, img_label))
     boton_buscar.grid(row=1, column=2, padx=145)
 
     img_label = ttk.Label(frame, background='#E4CCFF')
@@ -105,7 +108,7 @@ def mostrarProductos(lista_productos):
     boton_anterior = ttk.Button(frame_botones, text="Anterior", command=lambda: anterior(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, img_label, lista_productos))
     boton_anterior.grid(row=2, column=1)
 
-    boton_siguiente = ttk.Button(frame_botones, text="Siguiente", command=lambda: siguiente(titulo, descripcion, categoria, precio, rating, stock, tags,marca, sku, img_label, lista_productos))
+    boton_siguiente = ttk.Button(frame_botones, text="Siguiente", command=lambda: siguiente(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, img_label, lista_productos))
     boton_siguiente.grid(row=2, column=3, padx=35)
 
     actualizar_producto(titulo, descripcion, categoria, precio, rating, stock, tags, marca, sku, img_label, lista_productos)
